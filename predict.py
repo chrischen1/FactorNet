@@ -20,13 +20,6 @@ import argparse
 import os
 os.environ['KERAS_BACKEND'] = 'theano'
 
-
-input_dir = '/home/chen/FactorNet/data/PC-3'
-model_dir = '/home/chen/FactorNet/models/CTCF/metaGENCODE_RNAseq_Unique35_DGF'
-tf = 'CTCF'
-bed_file = '/home/chen/FactorNet/resources/sample_ladder_regions.bed.gz'
-output_file = '/home/chen/FactorNet/sample_ladder_regions.blacklistfiltered.bed.gz'
-
 def make_argument_parser():
     """
     Creates an ArgumentParser to read the options for this script from
