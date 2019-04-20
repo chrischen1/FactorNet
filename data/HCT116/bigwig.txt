@@ -1,1 +1,2 @@
+wgEncodeDukeMapabilityUniqueness35bp.bigWig	Unique35
 HCT116.1x.bw	DGF
