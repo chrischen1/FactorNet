@@ -15,9 +15,17 @@ import pickle
 
 # Standard library imports
 import sys
-import os
 import errno
 import argparse
+import os
+os.environ['KERAS_BACKEND'] = 'theano'
+
+
+input_dir = '/home/chen/FactorNet/data/PC-3'
+model_dir = '/home/chen/FactorNet/models/CTCF/metaGENCODE_RNAseq_Unique35_DGF'
+tf = 'CTCF'
+bed_file = '/home/chen/FactorNet/resources/sample_ladder_regions.bed.gz'
+output_file = '/home/chen/FactorNet/sample_ladder_regions.blacklistfiltered.bed.gz'
 
 def make_argument_parser():
     """
@@ -80,10 +88,8 @@ def main():
     print 'Generating predictions'
     model_tf_index = model_tfs.index(tf)
     model_predicts = model.predict_generator(datagen_bed, val_samples=len(datagen_bed), pickle_safe=True)
-    if len(model_tfs) > 1:
-        model_tf_predicts = model_predicts[:, model_tf_index]
-    else:
-        model_tf_predicts = model_predicts
+    model_tf_predicts = model_predicts[:, model_tf_index]
+
     final_scores = np.zeros(len(nonblacklist_bools))
     final_scores[nonblacklist_bools] = model_tf_predicts
     print 'Saving predictions'
